@@ -102,3 +102,7 @@ To use Ollama on another machine, set `OLLAMA_URL=http://<that-machine>:11434`. 
 - **Data isolation:** chats are scoped to their owner in every query.
 - **Input validation:** every request body and parameter is validated with zod.
 - **Container:** non-root user, read-only filesystem, all capabilities dropped, `no-new-privileges`. Ports are bound to `127.0.0.1` only, so the app is reachable from outside solely through the tunnel.
+
+## License
+
+[MIT](LICENSE)
