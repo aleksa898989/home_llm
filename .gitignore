@@ -1,0 +1,24 @@
+# dependencies & build output
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# runtime data (SQLite database with users, password hashes, sessions, chats)
+data/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+
+# secrets
+.env
+.env.*
+!.env.example
+
+# logs & OS/editor files
+*.log
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json

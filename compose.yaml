@@ -1,0 +1,29 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      OLLAMA_URL: http://host.docker.internal:11434
+    volumes:
+      - ./data:/data
+    ports:
+      - "127.0.0.1:3000:3000"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  ngrok:
+    image: ngrok/ngrok:3
+    restart: unless-stopped
+    command: http app:3000 --url=${NGROK_DOMAIN:?set NGROK_DOMAIN in .env}
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN:?set NGROK_AUTHTOKEN in .env}
+    ports:
+      - "127.0.0.1:4040:4040"
+    depends_on:
+      app:
+        condition: service_healthy
